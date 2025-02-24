@@ -13,8 +13,9 @@ import java.util.List;
 public class CategoryAPI {
     private final CategoryService categoryService;
 
+  //  CRUD METHODS CATEGORY
     @PostMapping
-    public SimpleResponse saveUser(@RequestBody CategoryRequest categoryRequest) {
+    public SimpleResponse saveCategory(@RequestBody CategoryRequest categoryRequest) {
         return categoryService.saveCategory(categoryRequest);
     }
     @GetMapping

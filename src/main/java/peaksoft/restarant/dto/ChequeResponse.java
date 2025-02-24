@@ -13,8 +13,8 @@ import java.time.LocalDateTime;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ChequeResponse {
-    Long id; // Чектин уникалдуу идентификатору
-    int priceAverage;//озточо баасы
+    Long id;
+    int priceAverage;//орточо баасы
     LocalDateTime createdAt;
 
     public ChequeResponse(Long id, int priceAverage, LocalDateTime createdAt) {

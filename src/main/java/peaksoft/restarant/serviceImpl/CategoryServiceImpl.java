@@ -41,17 +41,16 @@ private final SubcategoryRepo subcategoryRepo;
     }
     @Override
     public SimpleResponse deleteCategoryById(Long id) {
-        // Ресторанды өчүрүү
         try {
             categoryRepo.deleteById(id);
             return SimpleResponse.builder()
                     .httpStatus(HttpStatus.OK)
-                    .message("Ресторан ийгиликтүү өчүрүлдү")
+                    .message("Category ийгиликтүү өчүрүлдү")
                     .build();
         } catch (Exception e) {
             return SimpleResponse.builder()
                     .httpStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .message("Ресторанды өчүрүү учурунда ката чыкты: " + e.getMessage())
+                    .message("Category өчүрүү учурунда ката чыкты: " + e.getMessage())
                     .build();
 }}
     @Override
@@ -84,7 +83,6 @@ private final SubcategoryRepo subcategoryRepo;
         try {
             Category category = categoryRepo.findById(categoryId)
                     .orElseThrow(() -> new RuntimeException("Category not found"));
-            // Сабкатегорияларды категория боюнча табуу жана аттары боюнча сорттоо
             List<Subcategory> subcategories = subcategoryRepo.findByCategoryOrderByNameAsc(category);
             return subcategories.stream()
                     .map(subcategory -> new SubcategoryResponse(subcategory.getId(), subcategory.getName()))

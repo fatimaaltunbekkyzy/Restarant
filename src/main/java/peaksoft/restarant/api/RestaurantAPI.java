@@ -1,6 +1,7 @@
 package peaksoft.restarant.api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import peaksoft.restarant.dto.CategoryRequest;
 import peaksoft.restarant.dto.RestaurantRequest;
 import peaksoft.restarant.dto.RestaurantResponse;
 import peaksoft.restarant.dto.SimpleResponse;
@@ -17,6 +18,10 @@ public class RestaurantAPI {
     private final RestaurantService restauranServise;
 
 //     CRUD METHODS RESTAURANT
+    @PostMapping
+    public SimpleResponse saveCategory(@RequestBody RestaurantRequest restaurantRequest) {
+        return restauranServise.saveRestaurant(restaurantRequest);
+    }
 //     Ресторандагы кызматкерлерди текшерүү
     @GetMapping("/{restaurantId}/vacancy")
     public SimpleResponse checkVacancy(@PathVariable Long restaurantId) {

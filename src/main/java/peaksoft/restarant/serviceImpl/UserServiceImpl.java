@@ -69,7 +69,7 @@ public class UserServiceImpl implements UserService {
                 }
                 // Ресторанды кызматкерге автоматтык түрдө кошуу
                 user.setRestaurant(restaurant);
-                user.setStatus(RequestStatus.PENDING);  // Заявка күтүү абалына коюлат
+                user.setStatus(RequestStatus.PENDING);
                 userRepo.save(user);
                 return SimpleResponse.builder()
                         .message("Кызматкер ийгиликтүү түзүлдү жана ресторанга байланыштуу.")

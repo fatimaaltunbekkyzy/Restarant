@@ -46,4 +46,5 @@ public class User {
     Restaurant restaurant;
     @OneToMany(mappedBy = "user")
     List<Cheque> cheques;
-    }
+
+}

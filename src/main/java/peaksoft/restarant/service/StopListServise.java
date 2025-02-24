@@ -9,11 +9,10 @@ import java.util.List;
 
 public interface StopListServise {
 
-    StopList saveStopList(String reason, Long menuItemId, Long userId);
+    SimpleResponse saveStopList(StopListRequest stopListRequest);
 
     List<StopListResponse> getAllStopList();
 
-    SimpleResponse updateStopListById(Long id, StopListRequest stopListRequest);
 
     SimpleResponse deleteStopListById(Long id);
 }

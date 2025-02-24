@@ -22,4 +22,5 @@ public interface RestaurantService {
     SimpleResponse checkVacancy(Long restaurantId);
 
 
+    SimpleResponse saveRestaurant(RestaurantRequest restaurantRequest);
 }

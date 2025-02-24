@@ -1,5 +1,4 @@
 package peaksoft.restarant.serviceImpl;
-
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -8,31 +7,46 @@ import peaksoft.restarant.dto.SimpleResponse;
 import peaksoft.restarant.dto.StopListRequest;
 import peaksoft.restarant.dto.StopListResponse;
 import peaksoft.restarant.entities.StopList;
-import peaksoft.restarant.repo.SubcategoryRepo;
+import peaksoft.restarant.repo.StopListRepo;;
 import peaksoft.restarant.service.StopListServise;
 import java.util.List;
+
+
 @Service
 @Transactional
 @RequiredArgsConstructor
 public class StopListServiceImpl implements StopListServise {
-    private final SubcategoryRepo subcategoryRepo;
+    private final StopListRepo stopListRepo;
     @Override
-    public StopList saveStopList(String reason, Long menuItemId, Long userId) {
-        return null;
+    public SimpleResponse saveStopList(StopListRequest stopListRequest) {
+       StopList stopList = new StopList();
+        stopList.setDate(stopListRequest.getDate());
+        stopList.setReason(stopListRequest.getReason());
+        stopListRepo.save(stopList);
+        return SimpleResponse
+                .builder()
+                .httpStatus(HttpStatus.OK)
+                .message("StopList saved")
+                .build();
     }
 
     @Override
     public List<StopListResponse> getAllStopList() {
-        return List.of();
-    }
-
-    @Override
-    public SimpleResponse updateStopListById(Long id, StopListRequest stopListRequest) {
-        return null;
+        return stopListRepo.getAllStopList();
     }
 
     @Override
     public SimpleResponse deleteStopListById(Long id) {
-        return null;
+        try {
+           stopListRepo.deleteById(id);
+            return SimpleResponse.builder()
+                    .httpStatus(HttpStatus.OK)
+                    .message("StopList ийгиликтүү өчүрүлдү")
+                    .build();
+        } catch (Exception e) {
+            return SimpleResponse.builder()
+                    .httpStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .message("StopList өчүрүү учурунда ката чыкты: " + e.getMessage())
+                    .build();
     }
-}
+}}
